@@ -16,12 +16,6 @@ public class PlayerController : MonoBehaviour
     float xInput;
 
     float jumpInput;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
@@ -31,6 +25,7 @@ public class PlayerController : MonoBehaviour
 
         jumpInput = Input.GetAxis("Jump");
         
+        // shiftVal is 1 if shift isn't being pressed
         if (Input.GetKey(KeyCode.LeftShift))
         {
             shiftVal = shiftMult;
@@ -39,8 +34,13 @@ public class PlayerController : MonoBehaviour
             shiftVal = 1;
         }
 
+        // Jump translation
         transform.Translate(Vector3.up * jumpSpeed * jumpInput * Time.deltaTime);
+
+        // Forward and back translation
         transform.Translate(Vector3.forward * speed * Time.deltaTime * yInput * shiftVal);
+
+        // Turn rotation, uses yInput because vans don't turn on the spot
         transform.Rotate(Vector3.up, xInput * Time.deltaTime * steerSpeed * yInput * shiftVal);
     }
 
