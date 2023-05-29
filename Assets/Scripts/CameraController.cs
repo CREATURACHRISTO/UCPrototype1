@@ -35,7 +35,7 @@ public class CameraController : MonoBehaviour
     void MoveBehindPlayer()
     {
         Vector3 newPos = player.transform.position;
-        newPos.y = transform.position.y;
+        newPos.y += 4.15f;
         newPos.z -= 7.49f;
         transform.eulerAngles = new Vector3(8.51f, 0, 0);
         transform.position = newPos;
